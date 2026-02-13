@@ -1,0 +1,36 @@
+{
+  "name": "blackroad-os-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BlackRoad OS - Complete unified monorepo with all services, infrastructure, and tooling",
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "packages/*",
+    "agents/*",
+    "infrastructure/*",
+    "tooling/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "deploy:cloudflare": "turbo run deploy --filter='@blackroad/cloudflare-*'",
+    "deploy:railway": "turbo run deploy --filter='@blackroad/railway-*'",
+    "deploy:edge": "turbo run deploy --filter='@blackroad/edge-*'",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\""
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0"
+}
