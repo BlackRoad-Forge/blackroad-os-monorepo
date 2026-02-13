@@ -1,0 +1,48 @@
+{
+  "name": "@blackroad/vscode-extension",
+  "displayName": "BlackRoad Code Assistant",
+  "description": "AI-powered coding assistant with instant deployment",
+  "version": "1.0.0",
+  "publisher": "BlackRoad",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Snippets",
+    "Debuggers"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "blackroad.deploy",
+        "title": "Deploy to Production",
+        "category": "BlackRoad"
+      },
+      {
+        "command": "blackroad.testAPI",
+        "title": "Test API Endpoint",
+        "category": "BlackRoad"
+      },
+      {
+        "command": "blackroad.openDashboard",
+        "title": "Open Dashboard",
+        "category": "BlackRoad"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "clean": "rm -rf dist .next out build node_modules/.cache"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@blackroad/shared": "workspace:*"
+  }
+}

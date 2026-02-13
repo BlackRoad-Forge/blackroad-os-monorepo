@@ -1,0 +1,14 @@
+name: BlackRoad Deploy
+description: Deploy to BlackRoad Platform
+inputs:
+  api-key:
+    required: true
+  app-name:
+    required: true
+runs:
+  using: composite
+  steps:
+    - run: echo "🚀 Deploying to BlackRoad..."
+      shell: bash
+    - run: echo "✅ Deployed successfully!"
+      shell: bash

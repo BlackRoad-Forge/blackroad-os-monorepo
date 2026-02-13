@@ -1,0 +1,28 @@
+BlackRoad Brand System - Figma Plugin
+Version: 2.0.0
+Date: 2024-12-28
+
+Files:
+- manifest.json           Plugin configuration
+- code.js                 Plugin logic (Figma API)
+- ui.html                 Plugin UI (400x600)
+- README.md               Full documentation
+- INSTALLATION_GUIDE.md   Quick start guide
+
+Installation:
+1. Open Figma Desktop App
+2. Plugins → Development → Import plugin from manifest...
+3. Select manifest.json from this folder
+4. Plugin appears in Plugins → Development → BlackRoad Brand System
+
+Features:
+✅ 10 brand colors (exact hex values)
+✅ Brand gradient (Golden Ratio stops)
+✅ Fibonacci spacing scale (8-144px)
+✅ Quick actions (palette, guide, logo, library)
+✅ One-click color application
+✅ Component generators
+
+Support: blackroad.systems@gmail.com
+GitHub: https://github.com/BlackRoad-OS
+Docs: https://blackroad-os-brand.pages.dev

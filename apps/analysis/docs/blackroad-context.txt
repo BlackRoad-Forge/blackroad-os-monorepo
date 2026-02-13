@@ -1,0 +1,58 @@
+# ================================
+# BlackRoad Operator Context
+# ================================
+# Generated: Mon Jan 26 2026
+# Purpose: Stable reference for shell, tools, and mental model
+# ================================
+
+## Session
+Last login: Mon Jan 26 11:09:43 on ttys002
+Mail: yes
+
+## BlackRoad CLI
+CLI: BlackRoad CLI v3
+Layers:
+  - Layer 3: agents/system
+  - Layer 4: deploy/orchestration
+  - Layer 5: branches/environments
+  - Layer 6: Lucidia core/memory
+  - Layer 7: orchestration
+  - Layer 8: network/API
+
+## Filesystem Context
+cwd: /Users/alexa/apps/myapp
+home: /Users/alexa
+
+## Execution Paths
+bin: ~/.local/bin
+python: ~/.iso-venv/bin/python3
+
+## Runtime + State
+blackroad_runtime: ~/.blackroad
+agents: ~/.blackroad-agents
+rag: ~/.blackroad-rag
+repo_index: ~/.blackroad-repo-index
+
+## Resolution Chain
+shell → ~/.local/bin/lucidia → lucidia-cli → .iso-venv python
+
+## Notes
+- Tools are decoupled from project cwd
+- Safe to run br / lucidia from anywhere
+- Context file is non-executable by design
+
+---
+## Snapshot: $(date)
+
+pwd: $(pwd)
+python: $(which python3)
+lucidia: $(which lucidia)
+br: $(which br 2>/dev/null || echo "not found")
+---
+---
+## Snapshot: Mon Jan 26 11:32:28 CST 2026
+pwd: /Users/alexa/apps/myapp
+python: /Users/alexa/.iso-venv/bin/python3
+lucidia: /Users/alexa/.local/bin/lucidia
+br: /Users/alexa/.local/bin/br
+---

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --hot-pink: #FF1D6C;
+      --amber: #F5A623;
+      --electric-blue: #2979FF;
+      --violet: #9C27B0;
+      --gradient-brand: linear-gradient(135deg,
+        var(--amber) 0%,
+        var(--hot-pink) 38.2%,
+        var(--violet) 61.8%,
+        var(--electric-blue) 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      padding: 21px;
+      line-height: 1.618;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 21px;
+      padding-bottom: 21px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    h1 {
+      font-size: 21px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      opacity: 0.6;
+    }
+
+    .section {
+      margin-bottom: 21px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 13px;
+      color: var(--hot-pink);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 13px;
+    }
+
+    .color-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .color-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--hot-pink);
+      transform: translateY(-2px);
+    }
+
+    .color-swatch {
+      width: 100%;
+      height: 34px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .color-name {
+      font-size: 11px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .color-hex {
+      font-size: 10px;
+      opacity: 0.5;
+      font-family: 'SF Mono', 'Monaco', monospace;
+    }
+
+    .spacing-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .spacing-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .spacing-bar {
+      height: 8px;
+      background: var(--gradient-brand);
+      border-radius: 4px;
+    }
+
+    .spacing-label {
+      font-size: 11px;
+      font-family: 'SF Mono', 'Monaco', monospace;
+      opacity: 0.8;
+      white-space: nowrap;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 13px;
+      background: var(--gradient-brand);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 8px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255, 29, 108, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: none;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 21px;
+      padding-top: 21px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .info-box {
+      background: rgba(255, 29, 108, 0.1);
+      border: 1px solid rgba(255, 29, 108, 0.3);
+      border-radius: 8px;
+      padding: 13px;
+      font-size: 11px;
+      line-height: 1.618;
+      margin-top: 13px;
+    }
+
+    .info-box strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--hot-pink);
+    }
+
+    .gradient-preview {
+      width: 100%;
+      height: 55px;
+      background: var(--gradient-brand);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gradient-stops {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 8px;
+    }
+
+    .gradient-stop {
+      position: absolute;
+      bottom: 8px;
+      width: 2px;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .gradient-stop-label {
+      position: absolute;
+      bottom: 8px;
+      font-size: 9px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+
+    .scroll-container {
+      max-height: 450px;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    .scroll-container::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .scroll-container::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 3px;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb {
+      background: var(--hot-pink);
+      border-radius: 3px;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb:hover {
+      background: var(--violet);
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🌌 BlackRoad Brand System</h1>
+    <div class="subtitle">Official design standards for Figma</div>
+  </div>
+
+  <div class="scroll-container">
+    <div class="section">
+      <div class="section-title">🎨 Brand Colors</div>
+      <div class="color-grid" id="colorGrid"></div>
+      <div class="info-box">
+        <strong>Usage:</strong>
+        Click any color to apply it to your selection. All colors use exact brand hex values.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🌈 Brand Gradient</div>
+      <div class="gradient-preview">
+        <div class="gradient-stops">
+          <div class="gradient-stop" style="left: 0%;">
+            <div class="gradient-stop-label" style="left: 0%;">0%</div>
+          </div>
+          <div class="gradient-stop" style="left: 38.2%;">
+            <div class="gradient-stop-label" style="left: 38.2%; transform: translateX(-50%);">38.2%</div>
+          </div>
+          <div class="gradient-stop" style="left: 61.8%;">
+            <div class="gradient-stop-label" style="left: 61.8%; transform: translateX(-50%);">61.8%</div>
+          </div>
+          <div class="gradient-stop" style="left: 100%;">
+            <div class="gradient-stop-label" style="right: 0%;">100%</div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-secondary" onclick="createGradient()">Apply to Selection</button>
+      <div class="info-box">
+        <strong>Golden Ratio Stops:</strong>
+        135° gradient with stops at 38.2% and 61.8% (φ = 1.618)
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📐 Spacing (Fibonacci)</div>
+      <div class="spacing-list" id="spacingList"></div>
+      <div class="info-box">
+        <strong>Golden Ratio:</strong>
+        All spacing values follow the Fibonacci sequence (8, 13, 21, 34, 55, 89, 144)
+      </div>
+    </div>
+
+    <div class="actions">
+      <div class="section-title">🚀 Quick Actions</div>
+      <button class="btn" onclick="createColorPalette()">Create Color Palette</button>
+      <button class="btn btn-secondary" onclick="createSpacingGuide()">Create Spacing Guide</button>
+      <button class="btn btn-secondary" onclick="createLogo()">Create BlackRoad Logo</button>
+      <button class="btn btn-secondary" onclick="createComponentLibrary()">Create Full Library</button>
+    </div>
+  </div>
+
+  <script>
+    const BRAND = {
+      colors: {
+        hotPink: { name: 'Hot Pink', hex: '#FF1D6C', primary: true },
+        amber: { name: 'Amber', hex: '#F5A623', primary: true },
+        electricBlue: { name: 'Electric Blue', hex: '#2979FF', primary: true },
+        violet: { name: 'Violet', hex: '#9C27B0', primary: true },
+        black: { name: 'Black', hex: '#000000', primary: false },
+        white: { name: 'White', hex: '#FFFFFF', primary: false },
+        orange: { name: 'Orange', hex: '#F26522', primary: false },
+        magenta: { name: 'Magenta', hex: '#E91E63', primary: false },
+        skyBlue: { name: 'Sky Blue', hex: '#448AFF', primary: false },
+        deepPurple: { name: 'Deep Purple', hex: '#5E35B1', primary: false }
+      },
+      spacing: {
+        xs: 8,
+        sm: 13,
+        md: 21,
+        lg: 34,
+        xl: 55,
+        '2xl': 89,
+        '3xl': 144
+      }
+    };
+
+    // Render color grid
+    function renderColors() {
+      const grid = document.getElementById('colorGrid');
+      grid.innerHTML = '';
+
+      Object.entries(BRAND.colors).forEach(([key, color]) => {
+        const card = document.createElement('div');
+        card.className = 'color-card';
+        card.onclick = () => applyColor(key);
+
+        card.innerHTML = `
+          <div class="color-swatch" style="background: ${color.hex};"></div>
+          <div class="color-name">${color.name}${color.primary ? ' ★' : ''}</div>
+          <div class="color-hex">${color.hex}</div>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    // Render spacing list
+    function renderSpacing() {
+      const list = document.getElementById('spacingList');
+      list.innerHTML = '';
+
+      Object.entries(BRAND.spacing).forEach(([key, value]) => {
+        const item = document.createElement('div');
+        item.className = 'spacing-item';
+
+        item.innerHTML = `
+          <div class="spacing-bar" style="width: ${Math.min(value, 144)}px;"></div>
+          <div class="spacing-label">--space-${key}: ${value}px</div>
+        `;
+
+        list.appendChild(item);
+      });
+    }
+
+    // Apply color to selection
+    function applyColor(colorKey) {
+      parent.postMessage({
+        pluginMessage: {
+          type: 'apply-color',
+          colorKey
+        }
+      }, '*');
+    }
+
+    // Create gradient
+    function createGradient() {
+      parent.postMessage({
+        pluginMessage: {
+          type: 'create-gradient'
+        }
+      }, '*');
+    }
+
+    // Create color palette
+    function createColorPalette() {
+      parent.postMessage({
+        pluginMessage: {
+          type: 'create-color-palette'
+        }
+      }, '*');
+    }
+
+    // Create spacing guide
+    function createSpacingGuide() {
+      parent.postMessage({
+        pluginMessage: {
+          type: 'create-spacing-guide'
+        }
+      }, '*');
+    }
+
+    // Create logo
+    function createLogo() {
+      parent.postMessage({
+        pluginMessage: {
+          type: 'create-logo'
+        }
+      }, '*');
+    }
+
+    // Create component library
+    function createComponentLibrary() {
+      parent.postMessage({
+        pluginMessage: {
+          type: 'create-component-library'
+        }
+      }, '*');
+    }
+
+    // Initialize
+    renderColors();
+    renderSpacing();
+  </script>
+</body>
+</html>
